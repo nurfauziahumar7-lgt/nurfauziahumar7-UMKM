@@ -1,0 +1,872 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff8ef;
+    color: #3b2115;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav.navbar {
+    background: #3b2115;
+    padding: 12px 4%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #f6c94c;
+    font-size: 25px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.navbar .logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    display: block;
+}
+
+.navbar .navbar-collapse {
+    flex-grow: 0;
+}
+
+.navbar .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .nav-item {
+    list-style: none;
+}
+
+.navbar .nav-link {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 9px 15px !important;
+    border-radius: 22px;
+    transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #3b2115 !important;
+    background: #f6c94c;
+    transform: translateY(-2px);
+}
+
+.navbar-toggler {
+    border: 1px solid #f6c94c !important;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 2px rgba(246, 201, 76, 0.35);
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* =========================
+   RESPONSIVE NAVBAR
+========================= */
+
+@media (max-width: 991px) {
+    nav.navbar {
+        padding: 10px 5%;
+    }
+
+    .navbar .logo {
+        font-size: 20px;
+    }
+
+    .navbar .logo img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .navbar .navbar-collapse {
+        margin-top: 12px;
+        padding: 10px;
+        background: #3b2115;
+        border-radius: 12px;
+    }
+
+    .navbar .navbar-nav {
+        width: 100%;
+        gap: 4px;
+    }
+
+    .navbar .nav-link {
+        text-align: center;
+    }
+}
+
+/* =========================
+   HERO - INDEX
+========================= */
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px;
+
+    background:
+        linear-gradient(
+            rgba(55, 30, 17, 0.90),
+            rgba(55, 30, 17, 0.90)
+        ),
+        linear-gradient(
+            135deg,
+            #9a5b32,
+            #32190d
+        );
+
+    color: white;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-icon {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.hero-icon img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    color: #f6c94c;
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   BUTTON INDEX
+========================= */
+
+.btn {
+    display: inline-block;
+    background: #f6c94c;
+    color: #3b2115;
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.btn:hover {
+    background: #ffd966;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    text-align: center;
+    padding: 50px 20px 30px;
+}
+
+.header h1 {
+    font-size: 40px;
+    color: #4b260f;
+}
+
+.header p {
+    margin-top: 10px;
+    color: #76543d;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu-section {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto 60px;
+}
+
+.section-title {
+    font-size: 30px;
+    margin-bottom: 25px;
+    border-left: 7px solid #ffd04a;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+
+/* CATEGORY */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.category {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #ead8c4;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.category h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.category p {
+    color: #76543d;
+    margin-bottom: 15px;
+}
+
+.category button {
+    width: 100%;
+    border: none;
+    background: #ffd04a;
+    color: #3d2112;
+    padding: 12px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.category button:hover {
+    background: #f0b800;
+}
+
+
+/* DETAIL MENU */
+
+.detail {
+    display: none;
+    margin-top: 30px;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.detail h2 {
+    margin-bottom: 20px;
+}
+
+.menu-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 13px;
+    border-bottom: 1px solid #ead8c4;
+}
+
+.menu-item span {
+    font-weight: bold;
+}
+
+.menu-item button {
+    border: none;
+    background: #ffd04a;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/* PESANAN */
+
+.pesanan {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    background: #4b260f;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pesanan a {
+    color: #ffd04a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* =========================
+   PELANGGAN
+========================= */
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.pelanggan-card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.pelanggan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ead8c4;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.pelanggan-header h2 {
+    font-size: 22px;
+}
+
+
+/* STATUS */
+
+.status {
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #fff0bd;
+    color: #805b00;
+    font-weight: bold;
+}
+
+.status.selesai {
+    background: #d8f3dc;
+    color: #26733b;
+}
+
+
+/* ITEM */
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    color: #65442e;
+}
+
+
+/* TOTAL PELANGGAN */
+
+.pelanggan-card .total {
+    border-top: 2px solid #ffd04a;
+    margin-top: 15px;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   BUTTON PELANGGAN
+========================= */
+
+.selesai-btn {
+    margin-top: 20px;
+    width: 100%;
+    border: none;
+    padding: 13px;
+    border-radius: 25px;
+    background: #ffd04a;
+    color: #3d2112;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.selesai-btn:hover {
+    background: #efb900;
+}
+
+.hapus-btn {
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+    padding: 11px;
+    border-radius: 25px;
+    background: #8b2e2e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* =========================
+   TOMBOL INSTAGRAM
+========================= */
+
+.instagram-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: #d62976;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.instagram-btn:hover {
+    opacity: 0.85;
+}
+
+
+/* KOSONG PELANGGAN */
+
+#daftarPelanggan .kosong {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+/* =========================
+   PESAN
+========================= */
+
+.nama-pelanggan {
+    margin-bottom: 25px;
+}
+
+.nama-pelanggan label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.nama-pelanggan input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d8c1a8;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+
+/* ORDER ITEM */
+
+.order-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 15px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #ead8c4;
+}
+
+.harga {
+    color: #a65d00;
+    font-weight: bold;
+}
+
+.jumlah {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.jumlah button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: #ffd04a;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hapus {
+    border: none;
+    background: #8b2e2e;
+    color: white;
+    padding: 8px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+/* TOTAL PESAN */
+
+.container > .total {
+    display: flex;
+    justify-content: space-between;
+    border-top: 3px solid #ffd04a;
+    margin-top: 25px;
+    padding-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/* SIMPAN */
+
+.simpan {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    background: #ffd04a;
+    color: #3d2112;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.simpan:hover {
+    background: #efb900;
+}
+
+
+/* KOSONG PESAN */
+
+#daftarPesanan .kosong {
+    text-align: center;
+    padding: 35px;
+    color: #76543d;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 60px;
+    background: #4b260f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .menu-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    /* INDEX */
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero h2 {
+        font-size: 20px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero-icon img {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* PELANGGAN */
+
+    .pelanggan-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* PESAN */
+
+    .order-item {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        gap: 12px;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================
+   PENCARIAN PELANGGAN
+========================= */
+
+.pencarian-pelanggan {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 25px auto;
+}
+
+.pencarian-pelanggan input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.pencarian-pelanggan input:focus {
+    border-color: #f6c94c;
+    box-shadow: 0 0 0 3px rgba(246, 201, 76, 0.2);
+}
+
+
+/* =========================
+   EFEK HOVER CARD
+========================= */
+
+.disorot {
+    box-shadow: 0 0 0 3px rgba(246, 201, 76, 0.35);
+}
+
+
+/* =========================
+   POPUP INSTAGRAM
+========================= */
+
+.instagram-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+/* BOX POPUP */
+
+.instagram-box {
+    background: white;
+    width: 100%;
+    max-width: 520px;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+
+/* JUDUL POPUP */
+
+.instagram-box h2 {
+    color: #3b2115;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+
+/* KETERANGAN */
+
+.instagram-box p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 18px;
+}
+
+
+/* TEMPLATE PESAN */
+
+#templatePesan {
+    width: 100%;
+    min-height: 220px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    box-sizing: border-box;
+    background: #fffaf5;
+    color: #3b2115;
+}
+
+
+/* TOMBOL POPUP */
+
+.popup-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.popup-buttons button {
+    flex: 1;
+    border: none;
+    padding: 13px;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* TOMBOL SALIN */
+
+.copy-btn {
+    background: #f6c94c;
+    color: #3b2115;
+}
+
+
+/* TOMBOL INSTAGRAM */
+
+.open-instagram-btn {
+    background: #d62976;
+    color: white;
+}
+
+
+/* TOMBOL TUTUP */
+
+.close-popup {
+    width: 100%;
+    margin-top: 10px;
+    padding: 11px;
+    border: none;
+    border-radius: 9px;
+    background: #eee;
+    color: #333;
+    cursor: pointer;
+}
+
+
+/* =========================
+   RESPONSIVE POPUP
+========================= */
+
+@media (max-width: 600px) {
+    .instagram-box {
+        padding: 18px;
+    }
+
+    .popup-buttons {
+        flex-direction: column;
+    }
+}
+
+
+/* =========================
+   ANIMASI RINGAN
+========================= */
+
+.navbar .logo img {
+    transition: transform 0.3s ease;
+}
+
+.navbar .logo:hover img {
+    transform: rotate(-3deg) scale(1.04);
+}
+
+.btn,
+.category,
+.pelanggan-card,
+.instagram-btn,
+.simpan,
+.selesai-btn {
+    transition: all 0.3s ease;
+}
+
+.category:hover,
+.pelanggan-card:hover {
+    transform: translateY(-3px);
+}

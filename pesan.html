@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maktabak & Terang Bulan APPA - Pesan</title>
+
+    <!-- Bootstrap 5.3.8 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid nav-container">
+
+        <div class="logo">
+            <img src="logo APPA.png" alt="Logo APPA">
+            <span>Maktabak & Terang Bulan APPA</span>
+        </div>
+
+        <!-- Bootstrap Navbar Toggle -->
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+            <ul class="navbar-nav gap-lg-2">
+
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link page-link"> Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="menu.html" class="nav-link page-link"> Menu</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="pesan.html" class="nav-link page-link"> Pesan</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="pelanggan.html" class="nav-link page-link"> Pelanggan</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+
+
+    <!-- Header -->
+    <div class="header">
+        <h1>🛒 PESANAN</h1>
+        <p>Periksa menu dan masukkan nama pelanggan</p>
+    </div>
+
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Nama Pelanggan -->
+        <div class="nama-pelanggan">
+            <label for="nama">👤 Nama Pelanggan</label>
+
+            <input
+                type="text"
+                id="nama"
+                placeholder="Masukkan nama pelanggan"
+            >
+        </div>
+
+
+        <!-- Daftar Pesanan -->
+        <div id="daftarPesanan"></div>
+
+
+        <!-- Total -->
+        <div class="total">
+            <span>TOTAL</span>
+            <span id="totalHarga">Rp0</span>
+        </div>
+
+
+        <!-- Simpan Pesanan -->
+        <button
+            class="simpan"
+            onclick="simpanPesanan()"
+        >
+            ✅ Simpan Pesanan
+        </button>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        © 2026 Maktabak & Terang Bulan APPA
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+        function tampilkanPesanan() {
+            let pesanan =
+                JSON.parse(localStorage.getItem("pesanan")) || [];
+
+            let daftar =
+                document.getElementById("daftarPesanan");
+
+            let total =
+                document.getElementById("totalHarga");
+
+            daftar.innerHTML = "";
+
+            let totalHarga = 0;
+
+            if (pesanan.length === 0) {
+                daftar.innerHTML = `
+                    <div class="kosong">
+                        <h2>Belum ada menu</h2>
+
+                        <p>
+                            Silakan pilih menu terlebih dahulu.
+                        </p>
+                    </div>
+                `;
+
+                total.textContent = "Rp0";
+                return;
+            }
+
+            pesanan.forEach((item, index) => {
+                let subtotal =
+                    item.harga * item.jumlah;
+
+                totalHarga += subtotal;
+
+                daftar.innerHTML += `
+                    <div class="order-item">
+
+                        <strong>
+                            ${item.nama}
+                        </strong>
+
+                        <span class="harga">
+                            Rp${item.harga.toLocaleString("id-ID")}
+                        </span>
+
+                        <div class="jumlah">
+                            <button
+                                onclick="kurangi(${index})"
+                            >
+                                −
+                            </button>
+
+                            <strong>
+                                ${item.jumlah}
+                            </strong>
+
+                            <button
+                                onclick="tambah(${index})"
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Rp${subtotal.toLocaleString("id-ID")}
+                            </strong>
+
+                            <br><br>
+
+                            <button
+                                class="hapus"
+                                onclick="hapusItem(${index})"
+                            >
+                                Hapus
+                            </button>
+                        </div>
+
+                    </div>
+                `;
+            });
+
+            total.textContent =
+                "Rp" + totalHarga.toLocaleString("id-ID");
+        }
+
+
+        function tambah(index) {
+            let pesanan =
+                JSON.parse(localStorage.getItem("pesanan"));
+
+            pesanan[index].jumlah++;
+
+            localStorage.setItem(
+                "pesanan",
+                JSON.stringify(pesanan)
+            );
+
+            tampilkanPesanan();
+        }
+
+
+        function kurangi(index) {
+            let pesanan =
+                JSON.parse(localStorage.getItem("pesanan"));
+
+            pesanan[index].jumlah--;
+
+            if (pesanan[index].jumlah <= 0) {
+                pesanan.splice(index, 1);
+            }
+
+            localStorage.setItem(
+                "pesanan",
+                JSON.stringify(pesanan)
+            );
+
+            tampilkanPesanan();
+        }
+
+
+        function hapusItem(index) {
+            let pesanan =
+                JSON.parse(localStorage.getItem("pesanan"));
+
+            pesanan.splice(index, 1);
+
+            localStorage.setItem(
+                "pesanan",
+                JSON.stringify(pesanan)
+            );
+
+            tampilkanPesanan();
+        }
+
+
+        function simpanPesanan() {
+            let nama =
+                document
+                    .getElementById("nama")
+                    .value
+                    .trim();
+
+            let pesanan =
+                JSON.parse(localStorage.getItem("pesanan")) || [];
+
+            if (nama === "") {
+                alert(
+                    "Masukkan nama pelanggan terlebih dahulu!"
+                );
+
+                return;
+            }
+
+            if (pesanan.length === 0) {
+                alert(
+                    "Belum ada menu yang dipilih!"
+                );
+
+                return;
+            }
+
+            let total = pesanan.reduce(
+                (hasil, item) =>
+                    hasil + (item.harga * item.jumlah),
+                0
+            );
+
+            let daftarPelanggan =
+                JSON.parse(
+                    localStorage.getItem("pelanggan")
+                ) || [];
+
+            let dataBaru = {
+                id: Date.now(),
+                nama: nama,
+                pesanan: pesanan,
+                total: total,
+                status: "Diproses"
+            };
+
+            daftarPelanggan.push(dataBaru);
+
+            localStorage.setItem(
+                "pelanggan",
+                JSON.stringify(daftarPelanggan)
+            );
+
+            localStorage.removeItem("pesanan");
+
+            alert(
+                "Pesanan " +
+                nama +
+                " berhasil disimpan!"
+            );
+
+            window.location.href = "pelanggan.html";
+        }
+
+
+        tampilkanPesanan();
+    </script>
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(function () {
+
+            $("#nama").on("focus", function () {
+                $(this).css(
+                    "border",
+                    "2px solid #ffd04a"
+                );
+            });
+
+            $("#nama").on("blur", function () {
+                $(this).css(
+                    "border",
+                    "1px solid #d8c1a8"
+                );
+            });
+
+        });
+    </script>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYWjRrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"
+    ></script>
+
+</body>
+
+</html>

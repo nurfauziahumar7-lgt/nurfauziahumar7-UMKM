@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maktabak & Terang Bulan APPA - Pelanggan</title>
+
+    <!-- Bootstrap 5.3.8 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid nav-container">
+
+        <div class="logo">
+            <img src="logo APPA.png" alt="Logo APPA">
+            <span>Maktabak & Terang Bulan APPA</span>
+        </div>
+
+        <!-- Bootstrap Navbar Toggle -->
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+            <ul class="navbar-nav gap-lg-2">
+
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link page-link"> Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="menu.html" class="nav-link page-link"> Menu</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="pesan.html" class="nav-link page-link"> Pesan</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="pelanggan.html" class="nav-link page-link"> Pelanggan</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>👤 DATA PELANGGAN</h1>
+        <p>Daftar pesanan pelanggan</p>
+    </div>
+
+    <!-- Pencarian -->
+    <div class="pencarian-pelanggan">
+        <input
+            type="text"
+            id="cariPelanggan"
+            placeholder="🔍 Cari nama pelanggan atau menu..."
+        >
+    </div>
+
+    <!-- Daftar Pelanggan -->
+    <div class="container" id="daftarPelanggan"></div>
+
+    <!-- Popup Instagram -->
+    <div class="instagram-popup" id="instagramPopup">
+        <div class="instagram-box">
+            <h2>📩 Pesan untuk Penjual</h2>
+
+            <p id="keteranganPesan">
+                Pesan pesanan sudah dibuat otomatis.
+            </p>
+
+            <textarea id="templatePesan" readonly></textarea>
+
+            <div class="popup-buttons">
+                <button class="copy-btn" id="copyPesan">
+                    📋 Salin Pesan
+                </button>
+
+                <button class="open-instagram-btn" id="bukaInstagram">
+                    📩 Buka Instagram
+                </button>
+            </div>
+
+            <button class="close-popup" id="tutupPopup">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2026 Maktabak & Terang Bulan APPA
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(function () {
+
+            function tampilkanPelanggan() {
+                let data = JSON.parse(localStorage.getItem("pelanggan")) || [];
+                const $daftar = $("#daftarPelanggan");
+
+                $daftar.empty();
+
+                if (data.length === 0) {
+                    $daftar.html(`
+                        <div class="kosong">
+                            <h2>Belum ada pesanan</h2>
+                            <br>
+                            <p>Pesanan pelanggan akan muncul di sini.</p>
+                        </div>
+                    `);
+
+                    return;
+                }
+
+                data.forEach(function (pelanggan, index) {
+                    let daftarMenu = "";
+
+                    $.each(pelanggan.pesanan, function (_, item) {
+                        let subtotal = item.harga * item.jumlah;
+
+                        daftarMenu += `
+                            <div class="item">
+                                <span>
+                                    ${item.nama} × ${item.jumlah}
+                                </span>
+
+                                <strong>
+                                    Rp${subtotal.toLocaleString("id-ID")}
+                                </strong>
+                            </div>
+                        `;
+                    });
+
+                    let statusClass =
+                        pelanggan.status === "Selesai"
+                            ? "status selesai"
+                            : "status";
+
+                    $daftar.append(`
+                        <div
+                            class="pelanggan-card"
+                            data-index="${index}"
+                        >
+                            <div class="pelanggan-header">
+                                <h2>👤 ${pelanggan.nama}</h2>
+
+                                <span class="${statusClass}">
+                                    ${pelanggan.status}
+                                </span>
+                            </div>
+
+                            <div class="detail-pelanggan">
+                                ${daftarMenu}
+
+                                <div class="total">
+                                    <span>TOTAL</span>
+
+                                    <span>
+                                        Rp${pelanggan.total.toLocaleString("id-ID")}
+                                    </span>
+                                </div>
+
+                                <button
+                                    class="instagram-btn"
+                                    data-index="${index}"
+                                >
+                                    📩 Chat Penjual via Instagram
+                                </button>
+
+                                ${
+                                    pelanggan.status !== "Selesai"
+                                        ? `
+                                            <button
+                                                class="selesai-btn"
+                                                data-index="${index}"
+                                            >
+                                                ✅ Tandai Selesai
+                                            </button>
+                                        `
+                                        : ""
+                                }
+
+                                <button
+                                    class="hapus-btn"
+                                    data-index="${index}"
+                                >
+                                    🗑️ Hapus Data
+                                </button>
+                            </div>
+                        </div>
+                    `);
+                });
+            }
+
+            // Buka dan tutup detail pelanggan
+            $("#daftarPelanggan").on(
+                "click",
+                ".pelanggan-header",
+                function () {
+                    $(this)
+                        .next(".detail-pelanggan")
+                        .stop(true, true)
+                        .slideToggle(400);
+                }
+            );
+
+            // Efek saat mouse berada di atas kartu
+            $("#daftarPelanggan").on(
+                "mouseenter",
+                ".pelanggan-card",
+                function () {
+                    $(this).addClass("disorot");
+                }
+            );
+
+            $("#daftarPelanggan").on(
+                "mouseleave",
+                ".pelanggan-card",
+                function () {
+                    $(this).removeClass("disorot");
+                }
+            );
+
+            // Tombol chat Instagram
+            $("#daftarPelanggan").on(
+                "click",
+                ".instagram-btn",
+                function () {
+                    let index = $(this).data("index");
+                    let data = JSON.parse(localStorage.getItem("pelanggan")) || [];
+                    let pelanggan = data[index];
+
+                    const $card = $(this).closest(".pelanggan-card");
+
+                    const namaPelanggan = $card
+                        .find("h2")
+                        .text()
+                        .replace("👤", "")
+                        .trim();
+
+                    let pesan =
+                        "Halo Kak, saya " +
+                        namaPelanggan +
+                        ".\n\n" +
+                        "Saya ingin memesan:\n\n";
+
+                    $.each(pelanggan.pesanan, function (_, item) {
+                        let subtotal = item.harga * item.jumlah;
+
+                        pesan +=
+                            "• " +
+                            item.nama +
+                            " × " +
+                            item.jumlah +
+                            " = Rp" +
+                            subtotal.toLocaleString("id-ID") +
+                            "\n";
+                    });
+
+                    pesan +=
+                        "\nTOTAL: Rp" +
+                        pelanggan.total.toLocaleString("id-ID") +
+                        "\n\n" +
+                        "Mohon diproses ya Kak. Terima kasih 😊";
+
+                    $("#templatePesan").val(pesan);
+
+                    $("#keteranganPesan").text(
+                        "Pesanan " +
+                        namaPelanggan +
+                        " sudah dibuat otomatis."
+                    );
+
+                    $("#instagramPopup")
+                        .css("display", "flex")
+                        .hide()
+                        .fadeIn(250);
+                }
+            );
+
+            // Salin pesan
+            $("#copyPesan").on("click", function () {
+                let pesan = $("#templatePesan").val();
+
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard
+                        .writeText(pesan)
+                        .then(function () {
+                            alert(
+                                "✅ Pesan berhasil disalin!\n\n" +
+                                "Sekarang buka Instagram dan paste pesan tersebut."
+                            );
+                        })
+                        .catch(function () {
+                            salinCadangan();
+                        });
+                } else {
+                    salinCadangan();
+                }
+            });
+
+            // Cara cadangan untuk menyalin pesan
+            function salinCadangan() {
+                const $textarea = $("<textarea>")
+                    .val($("#templatePesan").val())
+                    .appendTo("body")
+                    .select();
+
+                document.execCommand("copy");
+                $textarea.remove();
+
+                alert(
+                    "✅ Pesan berhasil disalin!\n\n" +
+                    "Sekarang buka Instagram dan paste pesan tersebut."
+                );
+            }
+
+            // Buka Instagram
+            $("#bukaInstagram").on("click", function () {
+                window.open(
+                    "https://www.instagram.com/appa.martebul/",
+                    "_blank"
+                );
+            });
+
+            // Tutup popup
+            $("#tutupPopup").on("click", function () {
+                $("#instagramPopup")
+                    .stop(true, true)
+                    .fadeOut(200);
+            });
+
+            // Tutup popup ketika klik area luar kotak
+            $("#instagramPopup").on("click", function (event) {
+                if (event.target === this) {
+                    $(this)
+                        .stop(true, true)
+                        .fadeOut(200);
+                }
+            });
+
+            // Tandai pesanan selesai
+            $("#daftarPelanggan").on(
+                "click",
+                ".selesai-btn",
+                function () {
+                    let index = $(this).data("index");
+                    let data = JSON.parse(localStorage.getItem("pelanggan")) || [];
+
+                    data[index].status = "Selesai";
+
+                    localStorage.setItem(
+                        "pelanggan",
+                        JSON.stringify(data)
+                    );
+
+                    tampilkanPelanggan();
+                }
+            );
+
+            // Hapus data pelanggan
+            $("#daftarPelanggan").on(
+                "click",
+                ".hapus-btn",
+                function () {
+                    let index = $(this).data("index");
+                    let data = JSON.parse(localStorage.getItem("pelanggan")) || [];
+
+                    if (confirm("Hapus data pelanggan ini?")) {
+                        data.splice(index, 1);
+
+                        localStorage.setItem(
+                            "pelanggan",
+                            JSON.stringify(data)
+                        );
+
+                        tampilkanPelanggan();
+                    }
+                }
+            );
+
+            // Pencarian pelanggan
+            $("#cariPelanggan").on("keyup", function () {
+                const kata = $(this)
+                    .val()
+                    .toLowerCase();
+
+                $("#daftarPelanggan .pelanggan-card").filter(function () {
+                    const isi = $(this)
+                        .text()
+                        .toLowerCase();
+
+                    $(this).toggle(isi.indexOf(kata) > -1);
+                });
+            });
+
+            tampilkanPelanggan();
+        });
+    </script>
+
+    <!-- Bootstrap JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYWjRrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"
+    ></script>
+
+</body>
+
+</html>
