@@ -12,7 +12,7 @@ body {
 
 
 /* =========================
-   NAVBAR
+NAVBAR
 ========================= */
 
 nav.navbar {
@@ -37,14 +37,14 @@ nav.navbar {
     align-items: center;
     gap: 10px;
     color: #f6c94c;
-    font-size: 25px;
+    font-size: 40px;
     font-weight: bold;
     white-space: nowrap;
 }
 
 .navbar .logo img {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     object-fit: contain;
     display: block;
 }
@@ -97,7 +97,7 @@ nav.navbar {
 }
 
 /* =========================
-   RESPONSIVE NAVBAR
+RESPONSIVE NAVBAR
 ========================= */
 
 @media (max-width: 991px) {
@@ -132,7 +132,7 @@ nav.navbar {
 }
 
 /* =========================
-   HERO - INDEX
+HERO - INDEX
 ========================= */
 
 .hero {
@@ -193,7 +193,7 @@ nav.navbar {
 
 
 /* =========================
-   BUTTON INDEX
+BUTTON INDEX
 ========================= */
 
 .btn {
@@ -214,7 +214,7 @@ nav.navbar {
 
 
 /* =========================
-   HEADER
+HEADER
 ========================= */
 
 .header {
@@ -234,7 +234,7 @@ nav.navbar {
 
 
 /* =========================
-   MENU
+MENU
 ========================= */
 
 .menu-section {
@@ -251,6 +251,26 @@ nav.navbar {
     cursor: pointer;
 }
 
+/* =========================
+FOTO MENU TERANG BULAN & MARTABAK
+========================= */
+
+.menu-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.menu-image img {
+    width: 50%;
+    max-width: 450px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    display: block;
+}
 
 /* CATEGORY */
 
@@ -359,7 +379,7 @@ nav.navbar {
 
 
 /* =========================
-   PELANGGAN
+PELANGGAN
 ========================= */
 
 .container {
@@ -431,7 +451,7 @@ nav.navbar {
 
 
 /* =========================
-   BUTTON PELANGGAN
+BUTTON PELANGGAN
 ========================= */
 
 .selesai-btn {
@@ -464,7 +484,7 @@ nav.navbar {
 
 
 /* =========================
-   TOMBOL INSTAGRAM
+TOMBOL INSTAGRAM
 ========================= */
 
 .instagram-btn {
@@ -495,7 +515,7 @@ nav.navbar {
 
 
 /* =========================
-   PESAN
+PESAN
 ========================= */
 
 .nama-pelanggan {
@@ -602,7 +622,7 @@ nav.navbar {
 
 
 /* =========================
-   FOOTER
+FOOTER
 ========================= */
 
 footer {
@@ -615,7 +635,7 @@ footer {
 
 
 /* =========================
-   RESPONSIVE
+RESPONSIVE
 ========================= */
 
 @media (max-width: 800px) {
@@ -680,7 +700,7 @@ footer {
 
 
 /* =========================
-   PENCARIAN PELANGGAN
+PENCARIAN PELANGGAN
 ========================= */
 
 .pencarian-pelanggan {
@@ -706,7 +726,7 @@ footer {
 
 
 /* =========================
-   EFEK HOVER CARD
+EFEK HOVER CARD
 ========================= */
 
 .disorot {
@@ -715,7 +735,7 @@ footer {
 
 
 /* =========================
-   POPUP INSTAGRAM
+POPUP INSTAGRAM
 ========================= */
 
 .instagram-popup {
@@ -831,7 +851,7 @@ footer {
 
 
 /* =========================
-   RESPONSIVE POPUP
+RESPONSIVE POPUP
 ========================= */
 
 @media (max-width: 600px) {
@@ -846,7 +866,7 @@ footer {
 
 
 /* =========================
-   ANIMASI RINGAN
+ANIMASI RINGAN
 ========================= */
 
 .navbar .logo img {
